@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quick Links - Important Sites</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="h-screen overflow-hidden py-2 px-2">
+    <div class="h-full max-w-7xl mx-auto relative flex flex-col">
+      <!-- Dark Mode Toggle Button -->
+      <button
+        id="darkModeToggle"
+        class="dark-mode-toggle absolute top-0 right-0 p-2 rounded-full bg-white border-2 border-blue-500 shadow-lg hover:shadow-xl transition-all duration-300 z-10"
+        aria-label="Toggle dark mode"
+      >
+        <i class="fas fa-moon text-lg" id="darkModeIcon"></i>
+      </button>
+
+      <h1 class="text-2xl sm:text-3xl font-bold text-center mb-0.5 title">
+        Quick Links
+      </h1>
+      <p class="text-center mb-2 sm:mb-2 subtitle text-sm">
+        Access your important sites with one click
+      </p>
+
+      <div
+        class="flex flex-wrap justify-center items-center gap-1 sm:gap-1.5 md:gap-5 flex-1 overflow-y-auto pb-1"
+        style="max-height: fit-content"
+      >
+        <!-- ChatGPT -->
+        <a
+          href="https://chat.openai.com"
+          target="_blank"
+          class="site-card shadow-md p-2 sm:p-3 md:p-3 cursor-pointer"
+          data-icon-url="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/1200px-ChatGPT_logo.svg.png"
+        >
+          <div class="icon-container">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M21.62 4.76a1.75 1.75 0 0 0-1.5-.87H3.88a1.75 1.75 0 0 0-1.5.87 1.7 1.7 0 0 0-.38 1.33l1.88 13.5a1.75 1.75 0 0 0 1.73 1.54h13.78a1.75 1.75 0 0 0 1.73-1.54l1.88-13.5a1.7 1.7 0 0 0-.38-1.33zM12 3.5c.97 0 1.75.78 1.75 1.75S12.97 7 12 7s-1.75-.78-1.75-1.75S11.03 3.5 12 3.5z"
+                fill="#2563eb"
+              />
+            </svg>
+          </div>
+          <h3 class="font-semibold">ChatGPT</h3>
+          <p class="mt-0.5">OpenAI</p>
+        </a>
+
+        <!-- Gemini -->
+        <a
+          href="https://gemini.google.com"
+          target="_blank"
+          class="site-card shadow-md p-2 sm:p-3 md:p-3 cursor-pointer"
+          data-icon-url="https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/dark/gemini-color.png"
+        >
+          <div class="icon-container">
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+                fill="#2563eb"
+              />
+            </svg>
+          </div>
+          <h3 class="font-semibold">Gemini</h3>
+          <p class="mt-0.5">Google AI</p>
+        </a>
+
+        <!-- Facebook -->
+        <a
+          href="https://www.facebook.com"
+          target="_blank"
+          class="site-card shadow-md p-2 sm:p-3 md:p-3 cursor-pointer"
+          data-icon-url="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/1200px-Facebook_Logo_%282019%29.png"
+        >
+          <div class="icon-container">
+            <i class="fab fa-facebook"></i>
+          </div>
+          <h3 class="font-semibold">Facebook</h3>
+          <p class="mt-0.5">Social Network</p>
+        </a>
+
+        <!-- GitHub -->
+        <a
+          href="https://github.com"
+          target="_blank"
+          class="site-card shadow-md p-2 sm:p-3 md:p-3 cursor-pointer"
+          data-icon-url="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/1200px-Octicons-mark-github.svg.png"
+        >
+          <div class="icon-container">
+            <i class="fab fa-github"></i>
+          </div>
+          <h3 class="font-semibold">GitHub</h3>
+          <p class="mt-0.5">Code Repository</p>
+        </a>
+
+        <!-- YouTube -->
+        <a
+          href="https://www.youtube.com"
+          target="_blank"
+          class="site-card shadow-md p-2 sm:p-3 md:p-3 cursor-pointer"
+          data-icon-url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZVbKWfnfFo9BDH74vtHOsO2HdrszwdOcnwg&s"
+        >
+          <div class="icon-container">
+            <i class="fab fa-youtube"></i>
+          </div>
+          <h3 class="font-semibold">YouTube</h3>
+          <p class="mt-0.5">Video Platform</p>
+        </a>
+
+        <!-- Twitter/X -->
+        <a
+          href="https://twitter.com"
+          target="_blank"
+          class="site-card shadow-md p-2 sm:p-3 md:p-3 cursor-pointer"
+          data-icon-url="https://images.seeklogo.com/logo-png/49/2/twitter-x-logo-png_seeklogo-492396.png"
+        >
+          <div class="icon-container">
+            <i class="fab fa-x-twitter"></i>
+          </div>
+          <h3 class="font-semibold">Twitter/X</h3>
+          <p class="mt-0.5">Social Media</p>
+        </a>
+
+        <!-- LinkedIn -->
+        <a
+          href="https://www.linkedin.com"
+          target="_blank"
+          class="site-card shadow-md p-2 sm:p-3 md:p-3 cursor-pointer"
+          data-icon-url="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/600px-LinkedIn_logo_initials.png"
+        >
+          <div class="icon-container">
+            <i class="fab fa-linkedin"></i>
+          </div>
+          <h3 class="font-semibold">LinkedIn</h3>
+          <p class="mt-0.5">Professional Network</p>
+        </a>
+
+        <!-- Gmail -->
+        <a
+          href="https://mail.google.com"
+          target="_blank"
+          class="site-card shadow-md p-2 sm:p-3 md:p-3 cursor-pointer"
+          data-icon-url="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Gmail_icon_%282020%29.svg/1200px-Gmail_icon_%282020%29.svg.png"
+        >
+          <div class="icon-container">
+            <i class="fab fa-google"></i>
+          </div>
+          <h3 class="font-semibold">Gmail</h3>
+          <p class="mt-0.5">Email Service</p>
+        </a>
+
+        <!-- Reddit -->
+        <a
+          href="https://www.reddit.com"
+          target="_blank"
+          class="site-card shadow-md p-2 sm:p-3 md:p-3 cursor-pointer"
+          data-icon-url="https://store-images.s-microsoft.com/image/apps.15970.14375561300249796.05fe8c27-ce9e-4144-8702-0e81e2f575b1.042364cb-b745-4796-a520-61291e2dd6b9"
+        >
+          <div class="icon-container">
+            <i class="fab fa-reddit"></i>
+          </div>
+          <h3 class="font-semibold">Reddit</h3>
+          <p class="mt-0.5">Discussion Forum</p>
+        </a>
+
+        <!-- Stack Overflow -->
+        <a
+          href="https://stackoverflow.com"
+          target="_blank"
+          class="site-card shadow-md p-2 sm:p-3 md:p-3 cursor-pointer"
+          data-icon-url="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Stack_Overflow_icon.svg/1200px-Stack_Overflow_icon.svg.png"
+        >
+          <div class="icon-container">
+            <i class="fab fa-stack-overflow"></i>
+          </div>
+          <h3 class="font-semibold">Stack Overflow</h3>
+          <p class="mt-0.5">Developer Q&A</p>
+        </a>
+
+        <!-- Grok AI -->
+        <a
+          href="https://x.ai/grok"
+          target="_blank"
+          class="site-card shadow-md p-2 sm:p-3 md:p-3 cursor-pointer"
+          data-icon-url="https://media.licdn.com/dms/image/v2/D4E12AQEn7jZl7njzhA/article-cover_image-shrink_720_1280/B4EZXoy63jG0AI-/0/1743367417739?e=2147483647&v=beta&t=8ccvWee0e9C8n-0TwyVI1lFplDb2enE8xM_6gaSSL3s"
+        >
+          <div class="icon-container">
+            <i class="fas fa-robot"></i>
+          </div>
+          <h3 class="font-semibold">Grok AI</h3>
+          <p class="mt-0.5">xAI Assistant</p>
+        </a>
+
+        <!-- YouTube Music -->
+        <a
+          href="https://music.youtube.com"
+          target="_blank"
+          class="site-card shadow-md p-2 sm:p-3 md:p-3 cursor-pointer"
+          data-icon-url="https://yt3.googleusercontent.com/ytc/AIdro_l-6FQr2F5viYuELhfXHiUU46MqDNZkXPwUqbdZagQMt9A=s900-c-k-c0x00ffffff-no-rj"
+        >
+          <div class="icon-container">
+            <i class="fab fa-youtube"></i>
+          </div>
+          <h3 class="font-semibold">YouTube Music</h3>
+          <p class="mt-0.5">Music Streaming</p>
+        </a>
+
+        <!-- SABIS -->
+        <a
+          href="https://sabis.sakarya.edu.tr"
+          target="_blank"
+          class="site-card shadow-md p-2 sm:p-3 md:p-3 cursor-pointer"
+          data-icon-url=""
+        >
+          <div class="icon-container">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <h3 class="font-semibold">SABIS</h3>
+          <p class="mt-0.5">Sakarya University</p>
+        </a>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
