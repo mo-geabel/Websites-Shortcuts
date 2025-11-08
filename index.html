@@ -29,9 +29,18 @@
         <p class="text-center mb-2 sm:mb-2 subtitle text-sm">
           Access your important sites with one click
         </p>
+        <!-- Add New Link Button -->
+        <button
+          id="addLinkBtn"
+          class="mt-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg shadow-md transition-all duration-300 flex items-center gap-2"
+        >
+          <i class="fas fa-plus"></i>
+          <span>Add New Link</span>
+        </button>
       </div>
 
       <div
+        id="linksContainer"
         class="flex flex-wrap justify-center items-center gap-1 sm:gap-1.5 md:gap-5 flex-1 overflow-y-auto pb-1"
         style="max-height: fit-content"
       >
@@ -40,6 +49,7 @@
           href="https://chat.openai.com"
           target="_blank"
           class="site-card shadow-md p-2 sm:p-3 md:p-3 cursor-pointer"
+          data-link-id="chatgpt"
           data-icon-url="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/1200px-ChatGPT_logo.svg.png"
         >
           <div class="icon-container">
@@ -252,6 +262,68 @@
           <p class="mt-0.5">Sakarya University</p>
         </a>
       </div>
+    </div>
+
+    <!-- Add/Edit Link Modal -->
+    <div id="linkModal" class="modal hidden">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="modalTitle">Add New Link</h2>
+          <button class="close-btn" id="closeModal">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <form id="linkForm">
+          <div class="form-group">
+            <label for="linkName">Link Name:</label>
+            <input
+              type="text"
+              id="linkName"
+              required
+              placeholder="e.g., ChatGPT"
+            />
+          </div>
+          <div class="form-group">
+            <label for="linkUrl">URL:</label>
+            <input
+              type="url"
+              id="linkUrl"
+              required
+              placeholder="https://example.com"
+            />
+          </div>
+          <div class="form-group">
+            <label for="linkDescription">Description (optional):</label>
+            <input
+              type="text"
+              id="linkDescription"
+              placeholder="e.g., AI Assistant"
+            />
+          </div>
+          <div class="form-group">
+            <label for="linkIconUrl">Icon URL (optional):</label>
+            <input
+              type="url"
+              id="linkIconUrl"
+              placeholder="https://example.com/icon.png"
+            />
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn-cancel" id="cancelBtn">
+              Cancel
+            </button>
+            <button type="submit" class="btn-submit">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Context Menu -->
+    <div id="contextMenu" class="context-menu hidden">
+      <ul>
+        <li id="editOption"><i class="fas fa-edit"></i> Edit</li>
+        <li id="deleteOption"><i class="fas fa-trash"></i> Delete</li>
+      </ul>
     </div>
 
     <script src="script.js"></script>
