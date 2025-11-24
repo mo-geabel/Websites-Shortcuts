@@ -3,272 +3,65 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quick Links - Important Sites</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Quick Links - Dashboard</title>
+    <!-- Google Fonts: Outfit for a modern, premium look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- FontAwesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <link rel="icon" href="icon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" href="icon.ico" type="image/x-icon" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
-  <body class="h-screen overflow-hidden py-2 px-2">
-    <div class="h-full max-w-7xl mx-auto relative flex flex-col">
-      <div class="flex flex-col items-center justify-center mb-5">
-        <!-- Dark Mode Toggle Button -->
-        <button
-          id="darkModeToggle"
-          class="dark-mode-toggle absolute top-0 right-0 p-2 rounded-full bg-white border-2 border-blue-500 shadow-lg hover:shadow-xl transition-all duration-300 z-10"
-          aria-label="Toggle dark mode"
-        >
-          <i class="fas fa-moon text-lg" id="darkModeIcon"></i>
-        </button>
-        <h1 class="text-2xl sm:text-3xl font-bold text-center mb-0.5 title">
-          Quick Links
-        </h1>
-        <p class="text-center mb-2 sm:mb-2 subtitle text-sm">
-          Access your important sites with one click
-        </p>
-        <!-- Add New Link Button -->
-        <button
-          id="addLinkBtn"
-          class="mt-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg shadow-md transition-all duration-300 flex items-center gap-2"
-        >
-          <i class="fas fa-plus"></i>
-          <span>Add New Link</span>
-        </button>
-      </div>
-
-      <div
-        id="linksContainer"
-        class="flex flex-wrap justify-center items-center gap-1 sm:gap-1.5 md:gap-0 flex-1 overflow-y-auto pb-1"
-        style="max-height: fit-content"
-      >
-        <!-- ChatGPT -->
-        <a
-          href="https://chat.openai.com"
-          target="_blank"
-          class="site-card shadow-md p-2 sm:p-3 md:p-3 cursor-pointer"
-          data-link-id="chatgpt"
-          data-icon-url="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/1200px-ChatGPT_logo.svg.png"
-        >
-          <div class="icon-container">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
+  <body>
+    <div class="app-container">
+      <header>
+        <div class="header-content">
+          <div class="logo">
+            <i class="fas fa-bolt"></i>
+            <h1>Quick Links</h1>
+          </div>
+          <div class="controls">
+            <button id="addLinkBtn" class="btn-primary" aria-label="Add New Link">
+              <i class="fas fa-plus"></i> <span>Add Link</span>
+            </button>
+            <button
+              id="darkModeToggle"
+              class="btn-icon"
+              aria-label="Toggle Dark Mode"
             >
-              <path
-                d="M21.62 4.76a1.75 1.75 0 0 0-1.5-.87H3.88a1.75 1.75 0 0 0-1.5.87 1.7 1.7 0 0 0-.38 1.33l1.88 13.5a1.75 1.75 0 0 0 1.73 1.54h13.78a1.75 1.75 0 0 0 1.73-1.54l1.88-13.5a1.7 1.7 0 0 0-.38-1.33zM12 3.5c.97 0 1.75.78 1.75 1.75S12.97 7 12 7s-1.75-.78-1.75-1.75S11.03 3.5 12 3.5z"
-                fill="#2563eb"
-              />
-            </svg>
+              <i class="fas fa-moon"></i>
+            </button>
           </div>
-          <h3 class="font-semibold">ChatGPT</h3>
-          <p class="mt-0.5">OpenAI</p>
-        </a>
+        </div>
+        <p class="subtitle">Your personalized hub for important sites.</p>
+      </header>
 
-        <!-- Gemini -->
-        <a
-          href="https://gemini.google.com"
-          target="_blank"
-          class="site-card shadow-md p-2 sm:p-3 md:p-3 cursor-pointer"
-          data-icon-url="https://registry.npmmirror.com/@lobehub/icons-static-png/latest/files/dark/gemini-color.png"
-        >
-          <div class="icon-container">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
-                fill="#2563eb"
-              />
-            </svg>
-          </div>
-          <h3 class="font-semibold">Gemini</h3>
-          <p class="mt-0.5">Google AI</p>
-        </a>
+      <main>
+        <div id="linksContainer" class="links-grid">
+          <!-- Links will be injected here by JS -->
+        </div>
+        
+        <div id="emptyState" class="empty-state hidden">
+            <i class="fas fa-layer-group"></i>
+            <h3>No links yet</h3>
+            <p>Click "Add Link" to get started.</p>
+        </div>
+      </main>
 
-        <!-- Grok AI -->
-        <a
-          href="https://x.ai/grok"
-          target="_blank"
-          class="site-card shadow-md p-2 sm:p-3 md:p-3 cursor-pointer"
-          data-icon-url="https://media.licdn.com/dms/image/v2/D4E12AQEn7jZl7njzhA/article-cover_image-shrink_720_1280/B4EZXoy63jG0AI-/0/1743367417739?e=2147483647&v=beta&t=8ccvWee0e9C8n-0TwyVI1lFplDb2enE8xM_6gaSSL3s"
-        >
-          <div class="icon-container">
-            <i class="fas fa-robot"></i>
-          </div>
-          <h3 class="font-semibold">Grok AI</h3>
-          <p class="mt-0.5">xAI Assistant</p>
-        </a>
-
-        <!-- Facebook -->
-        <a
-          href="https://www.facebook.com"
-          target="_blank"
-          class="site-card shadow-md p-2 sm:p-3 md:p-3 cursor-pointer"
-          data-icon-url="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/1200px-Facebook_Logo_%282019%29.png"
-        >
-          <div class="icon-container">
-            <i class="fab fa-facebook"></i>
-          </div>
-          <h3 class="font-semibold">Facebook</h3>
-          <p class="mt-0.5">Social Network</p>
-        </a>
-
-        <!-- GitHub -->
-        <a
-          href="https://github.com"
-          target="_blank"
-          class="site-card shadow-md p-2 sm:p-3 md:p-3 cursor-pointer"
-          data-icon-url="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/1200px-Octicons-mark-github.svg.png"
-        >
-          <div class="icon-container">
-            <i class="fab fa-github"></i>
-          </div>
-          <h3 class="font-semibold">GitHub</h3>
-          <p class="mt-0.5">Code Repository</p>
-        </a>
-
-        <!-- YouTube -->
-        <a
-          href="https://www.youtube.com"
-          target="_blank"
-          class="site-card shadow-md p-2 sm:p-3 md:p-3 cursor-pointer"
-          data-icon-url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZVbKWfnfFo9BDH74vtHOsO2HdrszwdOcnwg&s"
-        >
-          <div class="icon-container">
-            <i class="fab fa-youtube"></i>
-          </div>
-          <h3 class="font-semibold">YouTube</h3>
-          <p class="mt-0.5">Video Platform</p>
-        </a>
-
-        <!-- Twitter/X -->
-        <a
-          href="https://twitter.com"
-          target="_blank"
-          class="site-card shadow-md p-2 sm:p-3 md:p-3 cursor-pointer"
-          data-icon-url="https://images.seeklogo.com/logo-png/49/2/twitter-x-logo-png_seeklogo-492396.png"
-        >
-          <div class="icon-container">
-            <i class="fab fa-x-twitter"></i>
-          </div>
-          <h3 class="font-semibold">Twitter/X</h3>
-          <p class="mt-0.5">Social Media</p>
-        </a>
-
-        <!-- LinkedIn -->
-        <a
-          href="https://www.linkedin.com"
-          target="_blank"
-          class="site-card shadow-md p-2 sm:p-3 md:p-3 cursor-pointer"
-          data-icon-url="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/600px-LinkedIn_logo_initials.png"
-        >
-          <div class="icon-container">
-            <i class="fab fa-linkedin"></i>
-          </div>
-          <h3 class="font-semibold">LinkedIn</h3>
-          <p class="mt-0.5">Professional Network</p>
-        </a>
-
-        <!-- Gmail -->
-        <a
-          href="https://mail.google.com"
-          target="_blank"
-          class="site-card shadow-md p-2 sm:p-3 md:p-3 cursor-pointer"
-          data-icon-url="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Gmail_icon_%282020%29.svg/1200px-Gmail_icon_%282020%29.svg.png"
-        >
-          <div class="icon-container">
-            <i class="fab fa-google"></i>
-          </div>
-          <h3 class="font-semibold">Gmail</h3>
-          <p class="mt-0.5">Email Service</p>
-        </a>
-
-        <!-- Reddit -->
-        <a
-          href="https://www.reddit.com"
-          target="_blank"
-          class="site-card shadow-md p-2 sm:p-3 md:p-3 cursor-pointer"
-          data-icon-url="https://store-images.s-microsoft.com/image/apps.15970.14375561300249796.05fe8c27-ce9e-4144-8702-0e81e2f575b1.042364cb-b745-4796-a520-61291e2dd6b9"
-        >
-          <div class="icon-container">
-            <i class="fab fa-reddit"></i>
-          </div>
-          <h3 class="font-semibold">Reddit</h3>
-          <p class="mt-0.5">Discussion Forum</p>
-        </a>
-
-        <!-- Stack Overflow -->
-        <a
-          href="https://stackoverflow.com"
-          target="_blank"
-          class="site-card shadow-md p-2 sm:p-3 md:p-3 cursor-pointer"
-          data-icon-url="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Stack_Overflow_icon.svg/1200px-Stack_Overflow_icon.svg.png"
-        >
-          <div class="icon-container">
-            <i class="fab fa-stack-overflow"></i>
-          </div>
-          <h3 class="font-semibold">Stack Overflow</h3>
-          <p class="mt-0.5">Developer Q&A</p>
-        </a>
-
-        <!-- Notion -->
-        <a
-          href="https://www.notion.com/"
-          target="_blank"
-          class="site-card shadow-md p-2 sm:p-3 md:p-3 cursor-pointer"
-          data-icon-url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUeKhHz2MYQO8o8FYbOsGa30uEb_Zh_RmsfA&s"
-        >
-          <div class="icon-container">
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUeKhHz2MYQO8o8FYbOsGa30uEb_Zh_RmsfA&s"
-              alt="Notion"
-            />
-          </div>
-          <h3 class="font-semibold">Notion</h3>
-          <p class="mt-0.5">Time Management</p>
-        </a>
-
-        <!-- YouTube Music -->
-        <a
-          href="https://music.youtube.com"
-          target="_blank"
-          class="site-card shadow-md p-2 sm:p-3 md:p-3 cursor-pointer"
-          data-icon-url="https://yt3.googleusercontent.com/ytc/AIdro_l-6FQr2F5viYuELhfXHiUU46MqDNZkXPwUqbdZagQMt9A=s900-c-k-c0x00ffffff-no-rj"
-        >
-          <div class="icon-container">
-            <i class="fab fa-youtube"></i>
-          </div>
-          <h3 class="font-semibold">YouTube Music</h3>
-          <p class="mt-0.5">Music Streaming</p>
-        </a>
-
-        <!-- SABIS -->
-        <a
-          href="https://sabis.sakarya.edu.tr"
-          target="_blank"
-          class="site-card shadow-md p-2 sm:p-3 md:p-3 cursor-pointer"
-          data-icon-url=""
-        >
-          <div class="icon-container">
-            <i class="fas fa-graduation-cap"></i>
-          </div>
-          <h3 class="font-semibold">SABIS</h3>
-          <p class="mt-0.5">Sakarya University</p>
-        </a>
-      </div>
+      <footer>
+        <p>&copy; 2025 Quick Links. Local Storage Enabled.</p>
+      </footer>
     </div>
 
-    <!-- Add/Edit Link Modal -->
-    <div id="linkModal" class="modal hidden">
-      <div class="modal-content">
+    <!-- Modal for Add/Edit -->
+    <div id="linkModal" class="modal-overlay hidden">
+      <div class="modal">
         <div class="modal-header">
           <h2 id="modalTitle">Add New Link</h2>
           <button class="close-btn" id="closeModal">
@@ -276,55 +69,76 @@
           </button>
         </div>
         <form id="linkForm">
+          <input type="hidden" id="linkId" />
+          
           <div class="form-group">
-            <label for="linkName">Link Name:</label>
-            <input
-              type="text"
-              id="linkName"
-              required
-              placeholder="e.g., ChatGPT"
-            />
+            <label for="linkName">Name</label>
+            <div class="input-wrapper">
+                <i class="fas fa-tag"></i>
+                <input
+                type="text"
+                id="linkName"
+                required
+                placeholder="e.g., ChatGPT"
+                />
+            </div>
           </div>
+          
           <div class="form-group">
-            <label for="linkUrl">URL:</label>
-            <input
-              type="url"
-              id="linkUrl"
-              required
-              placeholder="https://example.com"
-            />
+            <label for="linkUrl">URL</label>
+            <div class="input-wrapper">
+                <i class="fas fa-link"></i>
+                <input
+                type="url"
+                id="linkUrl"
+                required
+                placeholder="https://example.com"
+                />
+            </div>
           </div>
+          
           <div class="form-group">
-            <label for="linkDescription">Description (optional):</label>
-            <input
-              type="text"
-              id="linkDescription"
-              placeholder="e.g., AI Assistant"
-            />
+            <label for="linkDescription">Description (Optional)</label>
+            <div class="input-wrapper">
+                <i class="fas fa-align-left"></i>
+                <input
+                type="text"
+                id="linkDescription"
+                placeholder="e.g., AI Assistant"
+                />
+            </div>
           </div>
+          
           <div class="form-group">
-            <label for="linkIconUrl">Icon URL (optional):</label>
-            <input
-              type="url"
-              id="linkIconUrl"
-              placeholder="https://example.com/icon.png"
-            />
+            <label for="linkIconUrl">Custom Icon URL (Optional)</label>
+            <div class="input-wrapper">
+                <i class="fas fa-image"></i>
+                <input
+                type="url"
+                id="linkIconUrl"
+                placeholder="Leave empty for auto-icon"
+                />
+            </div>
+            <small class="hint">We'll try to fetch the favicon automatically if left blank.</small>
           </div>
+
           <div class="modal-actions">
-            <button type="button" class="btn-cancel" id="cancelBtn">
+            <button type="button" class="btn-text" id="cancelBtn">
               Cancel
             </button>
-            <button type="submit" class="btn-submit">Save</button>
+            <button type="submit" class="btn-submit">
+              Save Link
+            </button>
           </div>
         </form>
       </div>
     </div>
 
-    <!-- Context Menu -->
+    <!-- Custom Context Menu -->
     <div id="contextMenu" class="context-menu hidden">
       <ul>
-        <li id="editOption"><i class="fas fa-edit"></i> Edit</li>
-        <li id="deleteOption"><i class="fas fa-trash"></i> Delete</li>
+        <li id="editOption"><i class="fas fa-pen"></i> Edit</li>
+        <li id="deleteOption" class="danger"><i class="fas fa-trash"></i> Delete</li>
       </ul>
     </div>
 
