@@ -53,35 +53,147 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function getDefaultLinks() {
         return [
-            {
-                id: '1',
-                title: 'ChatGPT',
-                url: 'https://chat.openai.com',
-                description: 'OpenAI Chat',
-                icon: ''
-            },
-            {
-                id: '2',
-                title: 'Gemini',
-                url: 'https://gemini.google.com',
-                description: 'Google AI',
-                icon: ''
-            },
-            {
-                id: '3',
-                title: 'GitHub',
-                url: 'https://github.com',
-                description: 'Code Repository',
-                icon: ''
-            },
-            {
-                id: '4',
-                title: 'YouTube',
-                url: 'https://youtube.com',
-                description: 'Video Platform',
-                icon: ''
-            }
-        ];
+    {
+        id: '1',
+        title: 'ChatGPT',
+        url: 'https://chat.openai.com',
+        description: 'OpenAI',
+        icon: ''
+    },
+    {
+        id: '2',
+        title: 'Gemini',
+        url: 'https://gemini.google.com',
+        description: 'Google AI',
+        icon: ''
+    },
+    {
+        id: '3',
+        title: 'Grok',
+        url: 'https://grok.x.ai',
+        description: 'xAI Assistant',
+        icon: ''
+    },
+    {
+        id: '4',
+        title: 'GitHub',
+        url: 'https://github.com',
+        description: 'Code Repository',
+        icon: ''
+    },
+    {
+        id: '5',
+        title: 'YouTube',
+        url: 'https://www.youtube.com',
+        description: 'Video Platform',
+        icon: ''
+    },
+    {
+        id: '6',
+        title: 'X / Twitter',
+        url: 'https://x.com',
+        description: 'Social Media',
+        icon: ''
+    },
+    {
+        id: '7',
+        title: 'LinkedIn',
+        url: 'https://www.linkedin.com',
+        description: 'Professional Network',
+        icon: ''
+    },
+    {
+        id: '8',
+        title: 'Gmail',
+        url: 'https://mail.google.com',
+        description: 'Email Service',
+        icon: ''
+    },
+    {
+        id: '9',
+        title: 'Reddit',
+        url: 'https://www.reddit.com',
+        description: 'Discussion Forum',
+        icon: ''
+    },
+    {
+        id: '10',
+        title: 'Stack Overflow',
+        url: 'https://stackoverflow.com',
+        description: 'Developer Q&A',
+        icon: ''
+    },
+    {
+        id: '11',
+        title: 'Notion',
+        url: 'https://www.notion.so',
+        description: 'Notes & Projects',
+        icon: ''
+    },
+    {
+        id: '12',
+        title: 'YouTube Music',
+        url: 'https://music.youtube.com',
+        description: 'Music Streaming',
+        icon: ''
+    },
+    {
+        id: '13',
+        title: 'SABIS',
+        url: 'https://sabis.sakarya.edu.tr',
+        description: 'Sakarya University',
+        icon: ''
+    },
+    {
+        id: '14',
+        title: 'Google Drive',
+        url: 'https://drive.google.com/drive/my-drive',
+        description: 'Cloud Storage',
+        icon: ''
+    },
+    {
+        id: '15',
+        title: 'Google Translate',
+        url: 'https://translate.google.com',
+        description: 'Translator',
+        icon: ''
+    },
+    {
+        id: '16',
+        title: 'Longman Dictionary',
+        url: 'https://www.ldoceonline.com',
+        description: 'English Dictionary',
+        icon: ''
+    },
+    {
+        id: '17',
+        title: 'Coursera',
+        url: 'https://www.coursera.org',
+        description: 'Online Courses',
+        icon: ''
+    },
+    {
+        id: '18',
+        title: 'Chess.com',
+        url: 'https://www.chess.com/play',
+        description: 'Play Chess Online',
+        icon: ''
+    },
+    {
+        id: '19',
+        title: 'Yemek Menüsü',
+        url: 'https://menu.sabis.sakarya.edu.tr/Home/AylikMenu',
+        description: 'Sakarya University Food Menu',
+        icon: ''
+    },
+    {
+        id: '20',
+        title: 'WhatsApp Web',
+        url: 'https://web.whatsapp.com',
+        description: 'Messaging',
+        icon: ''
+    }
+];
     }
 
     function renderLinks() {
