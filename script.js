@@ -76,121 +76,156 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
         id: '4',
+        title: 'Facebook',
+        url: 'https://www.facebook.com',
+        description: 'Social Network',
+        icon: ''
+    },
+    {
+        id: '5',
         title: 'GitHub',
         url: 'https://github.com',
         description: 'Code Repository',
         icon: ''
     },
     {
-        id: '5',
+        id: '6',
         title: 'YouTube',
         url: 'https://www.youtube.com',
         description: 'Video Platform',
         icon: ''
     },
     {
-        id: '6',
+        id: '7',
         title: 'X / Twitter',
         url: 'https://x.com',
         description: 'Social Media',
         icon: ''
     },
     {
-        id: '7',
+        id: '8',
         title: 'LinkedIn',
         url: 'https://www.linkedin.com',
         description: 'Professional Network',
         icon: ''
     },
     {
-        id: '8',
+        id: '9',
         title: 'Gmail',
         url: 'https://mail.google.com',
         description: 'Email Service',
         icon: ''
     },
     {
-        id: '9',
+        id: '10',
         title: 'Reddit',
         url: 'https://www.reddit.com',
         description: 'Discussion Forum',
         icon: ''
     },
     {
-        id: '10',
+        id: '11',
         title: 'Stack Overflow',
         url: 'https://stackoverflow.com',
         description: 'Developer Q&A',
         icon: ''
     },
     {
-        id: '11',
+        id: '12',
         title: 'Notion',
         url: 'https://www.notion.so',
         description: 'Notes & Projects',
         icon: ''
     },
     {
-        id: '12',
+        id: '13',
         title: 'YouTube Music',
         url: 'https://music.youtube.com',
         description: 'Music Streaming',
         icon: ''
     },
     {
-        id: '13',
+        id: '14',
         title: 'SABIS',
         url: 'https://sabis.sakarya.edu.tr',
         description: 'Sakarya University',
         icon: ''
     },
     {
-        id: '14',
+        id: '15',
         title: 'Google Drive',
         url: 'https://drive.google.com/drive/my-drive',
         description: 'Cloud Storage',
         icon: ''
     },
     {
-        id: '15',
+        id: '16',
+        title: 'Logout From Internet',
+        url: '',  // no URL was provided originally
+        description: 'Network Logout',
+        icon: ''
+    },
+    {
+        id: '17',
         title: 'Google Translate',
         url: 'https://translate.google.com',
         description: 'Translator',
         icon: ''
     },
     {
-        id: '16',
+        id: '18',
         title: 'Longman Dictionary',
-        url: 'https://www.ldoceonline.com',
+        url: 'https://www.ldoceonline.com/dictionary',
         description: 'English Dictionary',
         icon: ''
     },
     {
-        id: '17',
+        id: '19',
         title: 'Coursera',
         url: 'https://www.coursera.org',
         description: 'Online Courses',
         icon: ''
     },
     {
-        id: '18',
+        id: '20',
         title: 'Chess.com',
         url: 'https://www.chess.com/play',
         description: 'Play Chess Online',
         icon: ''
     },
     {
-        id: '19',
+        id: '21',
         title: 'Yemek Menüsü',
         url: 'https://menu.sabis.sakarya.edu.tr/Home/AylikMenu',
         description: 'Sakarya University Food Menu',
         icon: ''
     },
     {
-        id: '20',
+        id: '22',
         title: 'WhatsApp Web',
         url: 'https://web.whatsapp.com',
         description: 'Messaging',
+        icon: ''
+    },
+    {
+        id: '23',
+        title: 'Arabsead',
+        url: 'https://a.asd.homes/recently/',
+        description: '',
+        icon: ''
+    },
+    {
+        id: '24',
+        title: 'Films',
+        url: '',  // no URL was provided originally
+        description: 'Movies',
+        icon: ''
+    },
+    {
+        id: '25',
+        title: 'films2',
+        url: '',  // no URL was provided originally
+        description: 'Movies',
         icon: ''
     }
 ];
