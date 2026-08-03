@@ -257,21 +257,38 @@ document.addEventListener('DOMContentLoaded', () => {
         a.dataset.id = link.id;
         a.draggable = true;
 
-        // Icon Logic - Lazy load icons so image fetching doesn't block page render/load
+        // Icon Logic - Asynchronous deferred load so slow external domain requests never block page/tab loading
         const domain = getDomain(link.url);
-        const iconUrl = link.icon || (domain ? `https://www.google.com/s2/favicons?domain=${encodeURIComponent(domain)}&sz=128` : '');
-        
         const fallbackSvg = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="%236c757d"><path d="M504 256C504 119 393 8 256 8S8 119 8 256s111 248 248 248 248-111 248-248zm-448 0c0-105.9 86.1-192 192-192 27.2 0 52.8 5.7 76 15.8-23.7 20-56.1 32.2-92 32.2-70.7 0-128 57.3-128 128 0 35.9 12.2 68.3 32.2 92-10.1-23.2-15.8-48.8-15.8-76z"/></svg>`;
-        const safeTitle = (link.title || '').replace(/"/g, '&quot;');
 
         const imgElement = document.createElement('img');
         imgElement.alt = link.title || '';
-        imgElement.loading = 'lazy';
-        imgElement.src = iconUrl || fallbackSvg;
-        imgElement.onerror = function() {
-            this.onerror = null;
-            this.src = fallbackSvg;
-        };
+        imgElement.src = fallbackSvg; // Instant placeholder render
+
+        if (link.icon) {
+            imgElement.src = link.icon;
+        } else if (domain) {
+            // Load favicons lazily in background without keeping tab loading state active
+            setTimeout(() => {
+                const tempImg = new Image();
+                let timedOut = false;
+                const timer = setTimeout(() => {
+                    timedOut = true;
+                    tempImg.src = '';
+                }, 2500); // 2.5s fast timeout
+
+                tempImg.onload = () => {
+                    if (!timedOut) {
+                        clearTimeout(timer);
+                        imgElement.src = tempImg.src;
+                    }
+                };
+                tempImg.onerror = () => {
+                    clearTimeout(timer);
+                };
+                tempImg.src = `https://www.google.com/s2/favicons?domain=${encodeURIComponent(domain)}&sz=128`;
+            }, 0);
+        }
 
         const iconContainer = document.createElement('div');
         iconContainer.className = 'icon-container';
