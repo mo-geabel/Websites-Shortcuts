@@ -16,6 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let editingId = null;
     let contextMenuTargetId = null;
 
+    const currentYearEl = document.getElementById('currentYear');
+    if (currentYearEl) {
+        currentYearEl.textContent = new Date().getFullYear();
+    }
+
     // Initial Render
     renderLinks();
     initTheme();
