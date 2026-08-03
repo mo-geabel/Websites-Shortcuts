@@ -1,171 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quick Links - Dashboard</title>
-    <!-- Google Fonts: Outfit for a modern, premium look -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="icon" type="image/png" href="icon.png">
-    <!-- FontAwesome -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="app-container">
-      <header>
-        <div class="header-content">
-          <div class="logo">
-            <img src="icon.png" alt="Quick Links Logo" class="logo-img">
-            <h1>Quick Links</h1>
-          </div>
-          <div class="controls">
-            <button id="addLinkBtn" class="btn-primary" aria-label="Add New Link">
-              <i class="fas fa-plus"></i> <span>Add Link</span>
-            </button>
-            <button
-              id="darkModeToggle"
-              class="btn-icon"
-              aria-label="Toggle Dark Mode"
-            >
-              <i class="fas fa-moon"></i>
-            </button>
-          </div>
-        </div>
-        <p class="subtitle">Your personalized hub for important sites.</p>
-      </header>
 
-      <main>
-        <div id="categoryTabs" class="category-tabs">
-          <button class="tab-btn active" data-category="All">All</button>
-          <button class="tab-btn" data-category="AI">AI</button>
-          <button class="tab-btn" data-category="Social">Social</button>
-          <button class="tab-btn" data-category="Dev">Dev</button>
-          <button class="tab-btn" data-category="Study">Study</button>
-          <button class="tab-btn" data-category="Other">Other</button>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quick Links - Dashboard</title>
+  <!-- Google Fonts: Outfit for a modern, premium look -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="icon.png">
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
 
-        <div id="linksContainer" class="links-grid">
-          <!-- Links will be injected here by JS -->
-        </div>
-        
-        <div id="emptyState" class="empty-state hidden">
-            <i class="fas fa-layer-group"></i>
-            <h3>No links yet</h3>
-            <p>Click "Add Link" to get started.</p>
-        </div>
-      </main>
+<body>
+  <div class="app-container">
+    <header>
+      <div class="header-content">
 
-      <footer>
-        <p>&copy; 2025 Quick Links. Local Storage Enabled.</p>
-      </footer>
-    </div>
 
-    <!-- Modal for Add/Edit -->
-    <div id="linkModal" class="modal-overlay hidden">
-      <div class="modal">
-        <div class="modal-header">
-          <h2 id="modalTitle">Add New Link</h2>
-          <button class="close-btn" id="closeModal">
-            <i class="fas fa-times"></i>
+        <h1>Quick Links</h1>
+
+        <div class="controls">
+
+          <button id="addLinkBtn" class="btn-primary" aria-label="Add New Link">
+            <i class="fas fa-plus"></i> <span>Add Link</span>
+          </button>
+          <button id="darkModeToggle" class="btn-icon" aria-label="Toggle Dark Mode">
+            <i class="fas fa-moon"></i>
           </button>
         </div>
-        <form id="linkForm">
-          <input type="hidden" id="linkId" />
-          
-          <div class="form-group">
-            <label for="linkName">Name</label>
-            <div class="input-wrapper">
-                <i class="fas fa-tag"></i>
-                <input
-                type="text"
-                id="linkName"
-                required
-                placeholder="e.g., ChatGPT"
-                />
-            </div>
-          </div>
-          
-          <div class="form-group">
-            <label for="linkUrl">URL</label>
-            <div class="input-wrapper">
-                <i class="fas fa-link"></i>
-                <input
-                type="url"
-                id="linkUrl"
-                required
-                placeholder="https://example.com"
-                />
-            </div>
-          </div>
-          
-          <div class="form-group">
-            <label for="linkCategory">Category</label>
-            <div class="input-wrapper">
-                <i class="fas fa-folder"></i>
-                <select id="linkCategory" class="select-input">
-                    <option value="AI">AI</option>
-                    <option value="Social">Social</option>
-                    <option value="Dev">Dev</option>
-                    <option value="Study">Study</option>
-                    <option value="Other" selected>Other</option>
-                </select>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="linkDescription">Description (Optional)</label>
-            <div class="input-wrapper">
-                <i class="fas fa-align-left"></i>
-                <input
-                type="text"
-                id="linkDescription"
-                placeholder="e.g., AI Assistant"
-                />
-            </div>
-          </div>
-          
-          <div class="form-group">
-            <label for="linkIconUrl">Custom Icon URL (Optional)</label>
-            <div class="input-wrapper">
-                <i class="fas fa-image"></i>
-                <input
-                type="url"
-                id="linkIconUrl"
-                placeholder="Leave empty for auto-icon"
-                />
-            </div>
-            <small class="hint">We'll try to fetch the favicon automatically if left blank.</small>
-          </div>
-
-          <div class="modal-actions">
-            <button type="button" class="btn-text" id="cancelBtn">
-              Cancel
-            </button>
-            <button type="submit" class="btn-submit">
-              Save Link
-            </button>
-          </div>
-        </form>
       </div>
-    </div>
+      <p class="subtitle">Your personalized hub for important sites.</p>
+    </header>
 
-    <!-- Custom Context Menu -->
-    <div id="contextMenu" class="context-menu hidden">
-      <ul>
-        <li id="editOption"><i class="fas fa-pen"></i> Edit</li>
-        <li id="deleteOption" class="danger"><i class="fas fa-trash"></i> Delete</li>
-      </ul>
-    </div>
+    <main>
+      <div id="linksContainer" class="links-grid">
+        <!-- Links will be injected here by JS -->
+      </div>
 
-    <script src="script.js"></script>
-  </body>
+      <div id="emptyState" class="empty-state hidden">
+        <i class="fas fa-layer-group"></i>
+        <h3>No links yet</h3>
+        <p>Click "Add Link" to get started.</p>
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Quick Links. Local Storage Enabled.</p>
+    </footer>
+  </div>
+
+  <!-- Modal for Add/Edit -->
+  <div id="linkModal" class="modal-overlay hidden">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="modalTitle">Add New Link</h2>
+        <button class="close-btn" id="closeModal">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <form id="linkForm">
+        <input type="hidden" id="linkId" />
+
+        <div class="form-group">
+          <label for="linkName">Name</label>
+          <div class="input-wrapper">
+            <i class="fas fa-tag"></i>
+            <input type="text" id="linkName" required placeholder="e.g., ChatGPT" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="linkUrl">URL</label>
+          <div class="input-wrapper">
+            <i class="fas fa-link"></i>
+            <input type="url" id="linkUrl" required placeholder="https://example.com" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="linkDescription">Description (Optional)</label>
+          <div class="input-wrapper">
+            <i class="fas fa-align-left"></i>
+            <input type="text" id="linkDescription" placeholder="e.g., AI Assistant" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="linkIconUrl">Custom Icon URL (Optional)</label>
+          <div class="input-wrapper">
+            <i class="fas fa-image"></i>
+            <input type="url" id="linkIconUrl" placeholder="Leave empty for auto-icon" />
+          </div>
+          <small class="hint">We'll try to fetch the favicon automatically if left blank.</small>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-text" id="cancelBtn">
+            Cancel
+          </button>
+          <button type="submit" class="btn-submit">
+            Save Link
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Custom Context Menu -->
+  <div id="contextMenu" class="context-menu hidden">
+    <ul>
+      <li id="editOption"><i class="fas fa-pen"></i> Edit</li>
+      <li id="deleteOption" class="danger"><i class="fas fa-trash"></i> Delete</li>
+    </ul>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
 </html>
