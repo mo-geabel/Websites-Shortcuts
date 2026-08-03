@@ -11,8 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="icon" type="image/x-icon" href="/icon.ico">
-    <link rel="icon" href="/icon.ico">
+    <link rel="icon" type="image/png" href="icon.png">
     <!-- FontAwesome -->
     <link
       rel="stylesheet"
@@ -25,7 +24,7 @@
       <header>
         <div class="header-content">
           <div class="logo">
-            <i class="fas fa-bolt"></i>
+            <img src="icon.png" alt="Quick Links Logo" class="logo-img">
             <h1>Quick Links</h1>
           </div>
           <div class="controls">
@@ -45,6 +44,15 @@
       </header>
 
       <main>
+        <div id="categoryTabs" class="category-tabs">
+          <button class="tab-btn active" data-category="All">All</button>
+          <button class="tab-btn" data-category="AI">AI</button>
+          <button class="tab-btn" data-category="Social">Social</button>
+          <button class="tab-btn" data-category="Dev">Dev</button>
+          <button class="tab-btn" data-category="Study">Study</button>
+          <button class="tab-btn" data-category="Other">Other</button>
+        </div>
+
         <div id="linksContainer" class="links-grid">
           <!-- Links will be injected here by JS -->
         </div>
@@ -99,6 +107,20 @@
             </div>
           </div>
           
+          <div class="form-group">
+            <label for="linkCategory">Category</label>
+            <div class="input-wrapper">
+                <i class="fas fa-folder"></i>
+                <select id="linkCategory" class="select-input">
+                    <option value="AI">AI</option>
+                    <option value="Social">Social</option>
+                    <option value="Dev">Dev</option>
+                    <option value="Study">Study</option>
+                    <option value="Other" selected>Other</option>
+                </select>
+            </div>
+          </div>
+
           <div class="form-group">
             <label for="linkDescription">Description (Optional)</label>
             <div class="input-wrapper">

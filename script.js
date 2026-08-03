@@ -15,10 +15,24 @@ document.addEventListener('DOMContentLoaded', () => {
     let links = JSON.parse(localStorage.getItem('quickLinks')) || getDefaultLinks();
     let editingId = null;
     let contextMenuTargetId = null;
+    let currentCategory = 'All';
 
     // Initial Render
     renderLinks();
     initTheme();
+
+    // Category Tabs Event Listener
+    const categoryTabs = document.getElementById('categoryTabs');
+    if (categoryTabs) {
+        categoryTabs.addEventListener('click', (e) => {
+            if (e.target.classList.contains('tab-btn')) {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                currentCategory = e.target.dataset.category;
+                renderLinks();
+            }
+        });
+    }
 
     // Event Listeners
     addLinkBtn.addEventListener('click', () => openModal());
@@ -234,36 +248,57 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderLinks() {
         linksContainer.innerHTML = '';
         
-        if (links.length === 0) {
+        const filteredLinks = currentCategory === 'All' 
+            ? links 
+            : links.filter(l => (l.category || inferCategory(l)) === currentCategory);
+
+        if (filteredLinks.length === 0) {
             emptyState.classList.remove('hidden');
             return;
         } else {
             emptyState.classList.add('hidden');
         }
 
-        links.forEach(link => {
+        filteredLinks.forEach(link => {
             const card = createLinkCard(link);
             linksContainer.appendChild(card);
         });
     }
 
+    function inferCategory(link) {
+        const title = (link.title || '').toLowerCase();
+        const url = (link.url || '').toLowerCase();
+
+        if (title.includes('gpt') || title.includes('gemini') || title.includes('grok') || title.includes('ai')) return 'AI';
+        if (title.includes('facebook') || title.includes('x') || title.includes('twitter') || title.includes('linkedin') || title.includes('reddit') || title.includes('whatsapp')) return 'Social';
+        if (title.includes('github') || title.includes('stack overflow') || title.includes('notion')) return 'Dev';
+        if (title.includes('sabis') || title.includes('longman') || title.includes('coursera') || title.includes('translate') || title.includes('yemek')) return 'Study';
+        return 'Other';
+    }
+
+    let draggedCardId = null;
+
     function createLinkCard(link) {
         const a = document.createElement('a');
-        a.href = link.url;
-        a.target = '_blank';
+        a.href = link.url || '#';
+        if (link.url) a.target = '_blank';
         a.className = 'site-card';
         a.dataset.id = link.id;
+        a.draggable = true;
 
-        // Icon Logic
-        const iconUrl = link.icon || `https://www.google.com/s2/favicons?domain=${getDomain(link.url)}&sz=128`;
+        // Icon Logic - Lazy load icons so image fetching doesn't block page render/load
+        const domain = getDomain(link.url);
+        const iconUrl = link.icon || (domain ? `https://www.google.com/s2/favicons?domain=${domain}&sz=128` : '');
         
+        const fallbackSvg = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="%236c757d"><path d="M504 256C504 119 393 8 256 8S8 119 8 256s111 248 248 248 248-111 248-248zm-448 0c0-105.9 86.1-192 192-192 27.2 0 52.8 5.7 76 15.8-23.7 20-56.1 32.2-92 32.2-70.7 0-128 57.3-128 128 0 35.9 12.2 68.3 32.2 92-10.1-23.2-15.8-48.8-15.8-76z"/></svg>`;
+
         a.innerHTML = `
             <div class="icon-container">
-                <img src="${iconUrl}" alt="${link.title}" onerror="this.src='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/svgs/solid/globe.svg'">
+                ${iconUrl ? `<img src="${iconUrl}" loading="lazy" alt="${link.title}" onerror="this.onerror=null; this.src='${fallbackSvg}';">` : `<img src="${fallbackSvg}" alt="${link.title}">`}
             </div>
             <div class="card-info">
                 <h3>${link.title}</h3>
-                <p>${link.description || getDomain(link.url)}</p>
+                <p>${link.description || domain || 'Shortcut'}</p>
             </div>
         `;
 
@@ -273,12 +308,55 @@ document.addEventListener('DOMContentLoaded', () => {
             showContextMenu(e.pageX, e.pageY, link.id);
         });
 
+        // Drag & Drop Handlers
+        a.addEventListener('dragstart', (e) => {
+            draggedCardId = link.id;
+            a.classList.add('dragging');
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/plain', link.id);
+        });
+
+        a.addEventListener('dragend', () => {
+            draggedCardId = null;
+            a.classList.remove('dragging');
+            document.querySelectorAll('.site-card').forEach(c => c.classList.remove('drag-over'));
+        });
+
+        a.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+            if (draggedCardId && draggedCardId !== link.id) {
+                a.classList.add('drag-over');
+            }
+        });
+
+        a.addEventListener('dragleave', () => {
+            a.classList.remove('drag-over');
+        });
+
+        a.addEventListener('drop', (e) => {
+            e.preventDefault();
+            a.classList.remove('drag-over');
+            if (!draggedCardId || draggedCardId === link.id) return;
+
+            const fromIndex = links.findIndex(l => l.id === draggedCardId);
+            const toIndex = links.findIndex(l => l.id === link.id);
+
+            if (fromIndex !== -1 && toIndex !== -1) {
+                const [movedLink] = links.splice(fromIndex, 1);
+                links.splice(toIndex, 0, movedLink);
+                saveLinks();
+                renderLinks();
+            }
+        });
+
         return a;
     }
 
     function getDomain(url) {
+        if (!url) return '';
         try {
-            return new URL(url).hostname;
+            return new URL(url.startsWith('http') ? url : `https://${url}`).hostname;
         } catch {
             return url;
         }
@@ -289,18 +367,20 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const title = document.getElementById('linkName').value;
         const url = document.getElementById('linkUrl').value;
+        const category = document.getElementById('linkCategory').value;
         const description = document.getElementById('linkDescription').value;
         const icon = document.getElementById('linkIconUrl').value;
 
         if (editingId) {
             // Update existing
-            links = links.map(l => l.id === editingId ? { ...l, title, url, description, icon } : l);
+            links = links.map(l => l.id === editingId ? { ...l, title, url, category, description, icon } : l);
         } else {
             // Add new
             const newLink = {
                 id: Date.now().toString(),
                 title,
-                url: url.startsWith('http') ? url : `https://${url}`,
+                url: url ? (url.startsWith('http') ? url : `https://${url}`) : '',
+                category,
                 description,
                 icon
             };
@@ -330,6 +410,7 @@ document.addEventListener('DOMContentLoaded', () => {
             modalTitle.textContent = 'Edit Link';
             document.getElementById('linkName').value = link.title;
             document.getElementById('linkUrl').value = link.url;
+            document.getElementById('linkCategory').value = link.category || inferCategory(link);
             document.getElementById('linkDescription').value = link.description;
             document.getElementById('linkIconUrl').value = link.icon;
         } else {
